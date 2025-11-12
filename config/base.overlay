@@ -1,0 +1,15 @@
+#include "4x4/4x4.overlay"
+
+/ {
+    bluetooth {
+        profile0: bluetooth-profile-0 {
+            name = "Marek 4x4";
+        };
+    };
+
+    chosen {
+        zmk,bluetooth {
+            profiles = <&profile0>;
+        };
+    };
+};
