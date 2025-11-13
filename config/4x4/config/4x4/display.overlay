@@ -1,0 +1,25 @@
+&st7789v {
+    status = "okay";
+    pinctrl-0 = <&spi1_default>;
+    pinctrl-names = "default";
+};
+
+/ {
+    display: display {
+        compatible = "zmk,display";
+        label = "ST7789V Display";
+        height = <240>;
+        width = <240>;
+        st7789v = <&st7789v>;
+    };
+
+    // Bateria na display
+    battery: battery {
+        compatible = "zmk,battery";
+        label = "Battery";
+        adc = <&adc>;
+        channel = <0>;  # P0.28
+        min = <3000>;  # mV min
+        max = <4200>;  # mV max
+    };
+};
