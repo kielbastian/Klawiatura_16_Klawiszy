@@ -43,3 +43,26 @@
         zmk,kscan = <&kscan0>;
     };
 };
+&spi1 {
+    st7789v: st7789v@0 {
+        compatible = "solomon,ssd1306fb";  # Kompatybilne z ST7789V w ZMK
+        reg = <0>;  # CS=0
+        reset-gpios = <&nice_nano P0_30 GPIO_ACTIVE_LOW>;
+        dc-gpios = <&nice_nano P0_31 GPIO_ACTIVE_LOW>;
+        width = <240>;
+        height = <240>;
+        rotation = <0>;
+        segment-offset = <0>;
+        page-offset = <0>;
+        mux-gpios = <&nice_nano P1_01 GPIO_ACTIVE_LOW>;  # CS
+        backlight = <&backlight>;
+    };
+};
+
+backlight: backlight {
+    compatible = "gpio-leds";
+    st7789v_bl: st7789v_bl {
+        gpios = <&nice_nano P0_29 GPIO_ACTIVE_HIGH>;  # PWM backlight (opcjonalnie)
+        label = "ST7789V Backlight";
+    };
+};
